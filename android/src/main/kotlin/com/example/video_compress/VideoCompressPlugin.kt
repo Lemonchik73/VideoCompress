@@ -162,12 +162,14 @@ class VideoCompressPlugin : MethodCallHandler, FlutterPlugin {
                                 val json = Utility(channelName).getMediaInfoJson(context, destPath)
                                 if (json == null) {
                                     result.success(null)
+                                } else {
+                                    json.put("isCancel", false)
+                                    result.success(json.toString())
+                                    if (deleteOrigin) {
+                                        File(path).delete()
+                                    }
                                 }
-                                json.put("isCancel", false)
-                                result.success(json.toString())
-                                if (deleteOrigin) {
-                                    File(path).delete()
-                                }
+
                             }
 
                             override fun onTranscodeCanceled() {

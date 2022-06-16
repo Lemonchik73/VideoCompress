@@ -31,7 +31,7 @@ class Utility(private val channelName: String) {
         return timeStamp.toLong()
     }
 
-    fun getMediaInfoJson(context: Context, path: String): JSONObject {
+    fun getMediaInfoJson(context: Context, path: String): JSONObject? {
         val file = File(path)
         val retriever = MediaMetadataRetriever()
 
